@@ -1,0 +1,57 @@
+.todo-wrapper {
+  padding: 5px 15px 15px;
+  border-bottom: var(--border);
+  margin: 5px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo-wrapper:last-child {
+  border-bottom: none;
+}
+.todo-item {
+  color: var(--font-color);
+  font-size: 14px;
+  padding-left: 30px;
+  position: relative;
+  text-transform: capitalize;
+  flex: auto;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"] + span::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: var(--border-focus);
+  left: 0px;
+  top: -2px;
+}
+input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #666666;
+}
+input[type="checkbox"]:checked + span::after {
+  border: var(--border);
+}
+input[type="checkbox"]:checked + span::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 6px;
+  border-left: var(--border);
+  border-bottom: var(--border);
+  transform: rotateZ(-45deg);
+  left: 4px;
+  top: 3px;
+}
+.icon-btn {
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}

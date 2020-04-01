@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import TodoList from "./components/TodoList/TodoList";
+import AddTodo from "./components/AddTodo/AddTodo";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    todos: []
+  };
+
+  handleSave = todo => {
+    this.setState(prevState => {
+      const newState = [...prevState.todos, this.genTodo(todo)];
+      return { todos: newState };
+    });
+  };
+
+  handleChange = id => {
+    const newState = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        todo.complete = !todo.complete;
+      }
+      return todo;
+    });
+    this.setState({ todos: newState });
+  };
+
+  handleDelete = id => {
+    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
+  };
+
+  render() {
+    return (
+      <div className="app-container">
+        <AddTodo value={this.state.addTodo} onSave={this.handleSave} />
+        <TodoList
+          todoList={this.state.todos}
+          change={this.handleChange}
+          delete={this.handleDelete}
+        />
+      </div>
+    );
+  }
+
+  genTodo(str) {
+    return {
+      item: str,
+      id: this.state.todos.length,
+      complete: false
+    };
+  }
 }
 
 export default App;

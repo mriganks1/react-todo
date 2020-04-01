@@ -1,0 +1,11 @@
+.todo-list-wrapper {
+  border: var(--border);
+  margin: 15px 0px;
+}
+.heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0px 20px;
+  padding: 0 15px;
+  color: var(--font-color);
+}
